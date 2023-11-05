@@ -19,7 +19,7 @@ Solving Vulnhub's Insanity  machine
   First, we need to install the ova file available [here](https://www.vulnhub.com/entry/insanity-1,536/). When we have the .ova file we just need to open it to import it into VirtualBox, VMware or your favourite platform.  Once imported we must make sure that the network adapter is in bridge mode. Now we can start with the enumeration phase.
  <h2>  3. Solving the machine</h2>
  The first thing to do is to identify the IP of the victim machine, for this we can play with "arp-scan --localnet --ignoredups", this will identify the IP addresses assigned in your local network (thanks to the --localnet parameter).<br/>
-  <img src=""/> <br/>
+  <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/arpscan.png"/> <br/>
   <br/>
   Once we have identified the IP address of the victim machine, we will launch a ping -c 1 "ip-victim-machine" to check if we receive a response, and also to identify the operating system of the victim machine thanks to the ttl.<br/>
   <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/ping.png"/> <br/>
