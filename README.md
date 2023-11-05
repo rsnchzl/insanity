@@ -29,5 +29,28 @@ Solving Vulnhub's Insanity  machine
 
   <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/nmap1.png"/> <br/>
   <br/>
+    We will also launch some basic reconnaissance scripts to detect the versions of the services that are running in addition to other data, for this we will use nmap again with the -sCV parameter on ports 21, 22 and 80.
+  <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/nmapscv.png"/> <br/> 
+  <br/>
+  If we look at the result it informs us that one of the scripts launched, ftp-anon reports that the Anonymous user is enabled and therefore we could connect through FTP. So let's try to connect via FTP.
+  <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/ftpconnect.png"/> <br/>
+  <br/>
+  Upon investigation we discovered that there is an empty directory called "pub" and we also discovered that we have no privileges to upload any files, so for the moment we will leave the ftp connection aside.
+Now we will focus on port 80 and we will access through a browser to the http service where we will be able to see a server sales web page. In the header of the web we can see a contact email called hello@insanityhosting.vm which makes us think that if we are applying virtual hosting insanityhosting.vm could be a domain, therefore we will reference it in the file /etc/hosts as follows:
+<img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/etchosts.png"/> <br/>
+<br/>
+  It's time to discover routes in the web, for this we will use gobuster together with the Seclists 2.3 medium dictionary.
+  <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/gobuster1.png"/> <br/>
+  <br/>
+  
+Well, let's start investigating, if we access the news directory we will see that there is a possible username called "Otis" and if we access the webmail directory we will see a SquirrelMail login. We know that very probablente Otis is a user, but we do not know his password therefore we will play with Hydra with the dictionary rockyou to make an attack of brute force through the method POST to try to decipher the password.
+<img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/hydra1.png"/> <br/>
+<br/>
+Well, brute force attack successful thanks to the very secure password (123456) of the user Otis (note the irony), so we can now access SquirrelMail but we don't see anything interesting. Instead if we access the path previously discovered by Gobuster called monitoring we see another login where Otis' credentials are reused so we can log in. 
+  
+  
+
+  
+  
 
 
