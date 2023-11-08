@@ -46,7 +46,9 @@ Now we will focus on port 80 and we will access through a browser to the http se
 Well, let's start investigating, if we access the news directory we will see that there is a possible username called "Otis" and if we access the webmail directory we will see a SquirrelMail login. We know that very probablente Otis is a user, but we do not know his password therefore we will play with Hydra with the dictionary rockyou to make an attack of brute force through the method POST to try to decipher the password.
 <img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/hydra1.png"/> <br/>
 <br/>
-Well, brute force attack successful thanks to the very secure password (123456) of the user Otis (note the irony), so we can now access SquirrelMail but we don't see anything interesting. Instead if we access the path previously discovered by Gobuster called monitoring we see another login where Otis' credentials are reused so we can log in. We can also connect to phpMyAdmin through the user "otis" without setting any password due to the obsolete version being used (and the stupid administrator).
+Well, brute force attack successful thanks to the very secure password (123456) of the user Otis (note the irony), so we can now access SquirrelMail but we don't see anything interesting. Instead if we access the path previously discovered by Gobuster called monitoring we see another login where Otis' credentials are reused so we can log in. We can also connect to phpMyAdmin through the user "otis" without setting any password due to the obsolete version being used (and the stupid administrator). <br/>
+Knowing that MySQL is being used we could test SQL injections. That is what we will do in the monitoring path. If we look, the web says that it will send us an email (to the webmail route where SquirrelMail acts) when the server is down. 
+<img src="https://github.com/rsnchzl/insanity/blob/main/screenshots/monitoring1.png"/>
   
   
 
